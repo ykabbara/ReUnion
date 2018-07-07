@@ -32,6 +32,7 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(conversationAdapter);
+
     }
 
     @Override
