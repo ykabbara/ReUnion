@@ -1,5 +1,7 @@
 package com.safaorhan.reunion.adapter;
 
+import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,6 +22,8 @@ import com.safaorhan.reunion.model.User;
 public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.UserHolder> {
     private static final String TAG = UserAdapter.class.getSimpleName();
     UserClickListener userClickListener;
+
+    Context context;
 
 
     public UserAdapter(@NonNull FirestoreRecyclerOptions<User> options) {
@@ -59,6 +63,7 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
     @Override
     protected void onBindViewHolder(@NonNull UserHolder holder, int position, @NonNull User user) {
         user.setId(getSnapshots().getSnapshot(position).getId());
+        context = holder.itemView.getContext();
         holder.bind(user);
     }
 
@@ -74,17 +79,22 @@ public class UserAdapter extends FirestoreRecyclerAdapter<User, UserAdapter.User
         View itemView;
         TextView nameText;
         TextView emailText;
+        TextView userIconText;
+
 
         public UserHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             nameText = itemView.findViewById(R.id.nameText);
             emailText = itemView.findViewById(R.id.emailText);
+            userIconText = itemView.findViewById(R.id.userIconText);
         }
 
         public void bind(final User user) {
+            final GradientDrawable circle = (GradientDrawable) userIconText.getBackground();
             nameText.setText(user.getName() + " " + user.getSurname());
             emailText.setText(user.getEmail());
+            circle.setColor(context.getResources().getColor(user.getColorId()));
 
             if (user.getId().equals(FirebaseAuth.getInstance().getUid())) {
                 itemView.setOnClickListener(null);

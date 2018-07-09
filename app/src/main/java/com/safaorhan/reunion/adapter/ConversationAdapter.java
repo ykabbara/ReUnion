@@ -1,5 +1,7 @@
 package com.safaorhan.reunion.adapter;
 
+import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,6 +26,8 @@ import com.safaorhan.reunion.model.User;
 public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, ConversationAdapter.ConversationHolder> {
     private static final String TAG = ConversationAdapter.class.getSimpleName();
     ConversationClickListener conversationClickListener;
+    User opponent = null;
+    Context context;
 
 
     public ConversationAdapter(@NonNull FirestoreRecyclerOptions<Conversation> options) {
@@ -63,6 +67,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
     @Override
     protected void onBindViewHolder(@NonNull ConversationHolder holder, int position, @NonNull Conversation conversation) {
         conversation.setId(getSnapshots().getSnapshot(position).getId());
+        context = holder.itemView.getContext();
         holder.bind(conversation);
     }
 
@@ -78,17 +83,19 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
         View itemView;
         TextView opponentNameText;
         TextView lastMessageText;
-
+        TextView opponentIconText;
         public ConversationHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             opponentNameText = itemView.findViewById(R.id.opponentNameText);
+            opponentIconText = itemView.findViewById(R.id.opponentIconText);
             lastMessageText = itemView.findViewById(R.id.lastMessageText);
         }
 
         public void bind(final Conversation conversation) {
 
             itemView.setVisibility(View.INVISIBLE);
+            final GradientDrawable circle = (GradientDrawable) opponentIconText.getBackground();
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -100,8 +107,9 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
             conversation.getOpponent().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    User opponent = documentSnapshot.toObject(User.class);
+                    opponent = documentSnapshot.toObject(User.class);
                     opponentNameText.setText(opponent.getName());
+                    circle.setColor(context.getResources().getColor(opponent.getColorId()));
                     itemView.setVisibility(View.VISIBLE);
                 }
             });

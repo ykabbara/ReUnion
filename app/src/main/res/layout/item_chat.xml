@@ -1,0 +1,38 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:minHeight="72dp"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+
+
+
+            <TextView
+                android:id="@+id/nameText"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:gravity="bottom"
+                android:textColor="#de000000"
+                android:textSize="16sp"
+                android:text="Anwar"
+                />
+
+            <TextView
+                android:id="@+id/emailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textColor="#8b000000"
+                android:textSize="14sp"
+                android:text="team6@nomail.me"
+                android:lineSpacingExtra="6sp"
+                />
+
+
+        </LinearLayout>
+
+
+
+
