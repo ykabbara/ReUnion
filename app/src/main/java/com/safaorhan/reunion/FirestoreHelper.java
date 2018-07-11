@@ -52,7 +52,7 @@ public class FirestoreHelper {
                             participants.add(opponentRef);
 
                             Conversation conversation = new Conversation();
-                            conversation.setId(getCoversationId(opponentRef));
+                            conversation.setId(getConversationId(opponentRef));
                             conversation.setParticipants(participants);
                             final DocumentReference conversationRef = getConversationRef(conversation);
                             conversationRef.set(conversation)
@@ -133,7 +133,7 @@ public class FirestoreHelper {
         void onCompleted(DocumentReference documentReference);
     }
 
-    public static String getCoversationId(DocumentReference opponentRef) {
+    public static String getConversationId(DocumentReference opponentRef) {
         String myId = getMe().getId();
         String opponentId = opponentRef.getId();
         if (myId.equals(opponentId)) {
