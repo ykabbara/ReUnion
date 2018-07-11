@@ -3,6 +3,7 @@ package com.safaorhan.reunion.activity;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,20 +18,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.safaorhan.reunion.FirestoreHelper;
 import com.safaorhan.reunion.R;
-import com.safaorhan.reunion.adapter.ChatHolder;
+import com.safaorhan.reunion.adapter.ChatAdapter;
 import com.safaorhan.reunion.model.Message;
 
 public class ChatActivity extends AppCompatActivity {
     private static final String TAG = ChatActivity.class.getSimpleName();
     RecyclerView recyclerView;
-    FirestoreRecyclerAdapter adapter;
     static DocumentReference mDocumentReference;
     EditText sendEditText;
     ImageView sendButton;
-    Query query = FirebaseFirestore.getInstance()
-            .collection("messages")
-            .orderBy("timestamp")
-            .limit(50);
+    ChatAdapter chatAdapter;
 
     public static void setDocumentReference(DocumentReference documentReference) {
         mDocumentReference = documentReference;
@@ -44,6 +41,9 @@ public class ChatActivity extends AppCompatActivity {
         sendEditText = findViewById(R.id.send_edit_text);
         sendButton = findViewById(R.id.send_button);
 
+        chatAdapter = ChatAdapter.get(mDocumentReference);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(chatAdapter);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,34 +53,18 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        FirestoreRecyclerOptions<Message> options = new FirestoreRecyclerOptions.Builder<Message>()
-                .setQuery(query, Message.class).build();
-
-        adapter = new FirestoreRecyclerAdapter<Message, ChatHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull ChatHolder holder, int position, @NonNull Message model) {
-
-            }
-
-            @NonNull
-            @Override
-            public ChatHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat, parent, false);
-                return new ChatHolder(view);
-            }
-        };
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        adapter.startListening();
+        chatAdapter.startListening();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        adapter.stopListening();
+        chatAdapter.stopListening();
     }
 }
