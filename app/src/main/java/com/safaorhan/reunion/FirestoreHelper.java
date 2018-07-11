@@ -51,20 +51,21 @@ public class FirestoreHelper {
                             participants.add(getMe());
                             participants.add(opponentRef);
 
-                            final Conversation conversation = new Conversation();
+                            Conversation conversation = new Conversation();
+                            conversation.setId(getCoversationId(opponentRef));
                             conversation.setParticipants(participants);
-                            getConversations()
-                                    .add(conversation)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            final DocumentReference conversationRef = getConversationRef(conversation);
+                            conversationRef.set(conversation)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
-                                        public void onSuccess(final DocumentReference conversationRef) {
+                                        public void onSuccess(Void aVoid) {
                                             HashMap<String, Object> updateFields = new HashMap<>();
                                             updateFields.put(getMe().getId(), true);
                                             updateFields.put(opponentRef.getId(), true);
                                             conversationRef.update(updateFields)
                                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                         @Override
-                                                        public void onSuccess(Void aVoid) {
+                                                            public void onSuccess(Void aVoid) {
                                                             callback.onCompleted(conversationRef);
                                                         }
                                                     });
@@ -130,5 +131,18 @@ public class FirestoreHelper {
 
     public interface DocumentReferenceCallback {
         void onCompleted(DocumentReference documentReference);
+    }
+
+    public static String getCoversationId(DocumentReference opponentRef) {
+        String myId = getMe().getId();
+        String opponentId = opponentRef.getId();
+        if (myId.equals(opponentId)) {
+            throw new IllegalArgumentException("your opponent cannot be null");
+        }
+        if (myId.compareTo(opponentId) > 0 ) {
+            return  opponentId + "-" + myId;
+        } else {
+            return myId + "-" + opponentId;
+        }
     }
 }
