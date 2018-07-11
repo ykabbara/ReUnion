@@ -36,10 +36,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
+            android:lineSpacingExtra="8sp"
             android:layout_marginBottom="24dp"
             android:inputType="textPassword"/>
 
         <Button
+            android:lineSpacingExtra="8sp"
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

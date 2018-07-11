@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="72dp"
     android:minHeight="72dp"
-    android:orientation="horizontal">
+    >
 
 
     <LinearLayout
@@ -37,12 +37,14 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="bottom"
+                android:lineSpacingExtra="8sp"
                 android:textColor="#de000000"
                 android:textSize="16sp"
                 android:text="Anwar"
                 />
 
             <TextView
+                android:lineSpacingExtra="6sp"
                 android:id="@+id/lastMessageText"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
