@@ -25,6 +25,7 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
     }
 
     public static ChatAdapter get(DocumentReference conversationRef) {
+
         Query query = FirebaseFirestore.getInstance()
                 .collection("messages")
                 .whereEqualTo("conversation", conversationRef)

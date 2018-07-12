@@ -1,73 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/turquoise_blue"
-    tools:context=".activity.LoginActivity"
-    >
-
-<RelativeLayout
-    android:layout_gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingRight="30dp"
-    android:paddingLeft="31dp"
-<<<<<<< HEAD
-    tools:context=".activity.LoginActivity"
-    android:background="@color/turquoise_blue"
     android:paddingEnd="30dp"
-    android:paddingStart="31dp">
-||||||| merged common ancestors
-    tools:context=".activity.LoginActivity"
-    android:background="@color/turquoise_blue">
-=======
-    >
->>>>>>> 524c584b9333a4031fe8cb18862a6e8892ac363a
+    android:paddingLeft="31dp"
+    android:paddingRight="30dp"
+    android:paddingStart="31dp"
+    tools:context=".activity.LoginActivity">
 
-
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:layout_gravity="center">
 
-        <ImageView
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/logo"
-            android:layout_marginBottom="42dp"
-            android:contentDescription="@string/logo" />
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/emailEdit"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/email"
-            android:layout_marginBottom="16dp"
-            android:inputType="textEmailAddress"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="42dp"
+                android:contentDescription="@string/logo"
+                android:src="@drawable/logo" />
 
-        <EditText
-            android:id="@+id/passwordEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/password"
-            android:lineSpacingExtra="8sp"
-            android:layout_marginBottom="24dp"
-            android:inputType="textPassword"/>
+            <EditText
+                android:id="@+id/emailEdit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress" />
 
-        <Button
-            android:lineSpacingExtra="8sp"
-            android:id="@+id/loginButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/log_in"
-            android:textColor="@color/white"
-            android:background="@color/tomato"/>
-    </LinearLayout>
+            <EditText
+                android:id="@+id/passwordEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:lineSpacingExtra="8sp" />
 
-</RelativeLayout>
+            <Button
+                android:id="@+id/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/tomato"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/log_in"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </RelativeLayout>
 </ScrollView>

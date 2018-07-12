@@ -24,15 +24,10 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".activity.ConversationsActivity" />
         <activity android:name=".activity.UsersActivity" />
-<<<<<<< HEAD
         <activity
             android:name=".activity.ChatActivity"
-            android:parentActivityName=".activity.ConversationsActivity" />
-||||||| merged common ancestors
-        <activity android:name=".activity.ChatActivity"></activity>
-=======
-        <activity android:name=".activity.ChatActivity" />
->>>>>>> 524c584b9333a4031fe8cb18862a6e8892ac363a
+            android:parentActivityName=".activity.ConversationsActivity"
+            android:launchMode="singleTop"/>
     </application>
 
 </manifest>

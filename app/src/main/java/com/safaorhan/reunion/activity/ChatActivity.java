@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+
 import com.google.firebase.firestore.DocumentReference;
 import com.safaorhan.reunion.FirestoreHelper;
 import com.safaorhan.reunion.R;
@@ -30,8 +31,9 @@ public class ChatActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         sendEditText = findViewById(R.id.send_edit_text);
         sendButton = findViewById(R.id.send_button);
-        setAdapter();
-
+        chatAdapter = ChatAdapter.get(mDocumentReference);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(chatAdapter);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,15 +43,8 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
-    private void setAdapter(){
-        chatAdapter = ChatAdapter.get(mDocumentReference);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(chatAdapter);
 
-    }
 
     @Override
     protected void onStart() {
