@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/turquoise_blue"
+    tools:context=".activity.LoginActivity"
+    >
+
+<RelativeLayout
+    android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingRight="30dp"
     android:paddingLeft="31dp"
-    tools:context=".activity.LoginActivity"
-    android:background="@color/turquoise_blue">
+    >
 
 
 
@@ -51,3 +59,4 @@
     </LinearLayout>
 
 </RelativeLayout>
+</ScrollView>
