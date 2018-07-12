@@ -13,7 +13,6 @@ import com.safaorhan.reunion.adapter.UserAdapter;
 
 public class UsersActivity extends AppCompatActivity implements UserAdapter.UserClickListener {
 
-    private static final String TAG = UsersActivity.class.getSimpleName();
 
     RecyclerView recyclerView;
     UserAdapter userAdapter;

@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="72dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:minHeight="72dp"
-    >
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    android:orientation="horizontal">
 
         <TextView
             android:background="@drawable/circle"
@@ -21,7 +15,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="16dp"
-            android:text="A"
+            tools:text="A"
             android:textColor="#ffffff"
             android:gravity="center"/>
 
@@ -29,33 +23,35 @@
             android:id="@+id/text_container"
             android:layout_width="match_parent"
             android:layout_height="72dp"
+            android:paddingTop="17dp"
+            android:paddingRight="25dp"
+            android:paddingBottom="13dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/opponentNameText"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:gravity="bottom"
                 android:lineSpacingExtra="8sp"
                 android:textColor="#de000000"
                 android:textSize="16sp"
-                android:text="Anwar"
+                tools:text="Anwar"
                 />
 
             <TextView
                 android:lineSpacingExtra="6sp"
                 android:id="@+id/lastMessageText"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:gravity="top"
                 android:textColor="#8b000000"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textSize="14sp"
-                android:text="Dude I have something to ask..."
+                android:text="@string/dude_i_have_something_to_ask"
                 />
         </LinearLayout>
-    </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

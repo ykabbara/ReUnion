@@ -12,15 +12,15 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.safaorhan.reunion.R;
 import com.safaorhan.reunion.model.Message;
 import com.safaorhan.reunion.model.User;
 
 public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.ChatHolder> {
-    private static final String TAG = ChatAdapter.class.getSimpleName();
 
-    public ChatAdapter(@NonNull FirestoreRecyclerOptions<Message> options) {
+    private ChatAdapter(@NonNull FirestoreRecyclerOptions<Message> options) {
         super(options);
     }
 
@@ -50,26 +50,33 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<Message, ChatAdapter.C
         return new ChatHolder(itemView);
     }
 
-    public class ChatHolder extends RecyclerView.ViewHolder {
+    class ChatHolder extends RecyclerView.ViewHolder {
 
         View itemView;
         TextView nameText;
         TextView messageText;
 
-        public ChatHolder(View itemView) {
+        ChatHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             nameText = itemView.findViewById(R.id.name_text);
             messageText = itemView.findViewById(R.id.message_text);
         }
 
-        public void bind(final Message message) {
+        void bind(final Message message) {
 
             message.getFrom().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     User user = documentSnapshot.toObject(User.class);
-                    nameText.setText(user.getName());
+                    String ourMail = "team6@nomail.me";
+                    if (user != null) {
+                        if (ourMail.equals(user.getEmail())) {
+                            nameText.setText(R.string.you);
+                        } else {
+                            nameText.setText(user.getName());
+                        }
+                    }
                 }
             });
 

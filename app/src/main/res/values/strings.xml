@@ -2,5 +2,14 @@
     <string name="app_name">ReUnion</string>
     <string name="menu_people">People</string>
     <string name="logo">logo</string>
+    <string name="send_a_message">Send a message...</string>
+    <string name="example">start new conversation!</string>
+    <string name="name_example">Anwar</string>
+    <string name="you">you</string>
+    <string name="start_a_conversation">Write something to start a conversation!</string>
+    <string name="dude_i_have_something_to_ask">Dude I have something to ask...</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log In</string>
 
 </resources>

@@ -85,7 +85,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
         TextView lastMessageText;
         TextView opponentIconText;
 
-        public ConversationHolder(View itemView) {
+        private ConversationHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             opponentNameText = itemView.findViewById(R.id.opponentNameText);
@@ -93,7 +93,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
             opponentIconText = itemView.findViewById(R.id.opponentIconText);
         }
 
-        public void bind(final Conversation conversation) {
+        private void bind(final Conversation conversation) {
 
             itemView.setVisibility(View.INVISIBLE);
             final GradientDrawable circle = (GradientDrawable) opponentIconText.getBackground();
@@ -109,10 +109,13 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     opponent = documentSnapshot.toObject(User.class);
-                    opponentNameText.setText(opponent.getName());
+                    if (opponent != null) {
+                        opponentNameText.setText(opponent.getName());
+
                     circle.setColor(context.getResources().getColor(opponent.getColorId()));
                     String firstLetter = opponent.getName().charAt(0) + "";
                     opponentIconText.setText(firstLetter);
+                    }
                     itemView.setVisibility(View.VISIBLE);
                 }
             });
@@ -123,11 +126,13 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Message lastMessage = documentSnapshot.toObject(Message.class);
-                        lastMessageText.setText(lastMessage.getText());
+                        if (lastMessage != null) {
+                            lastMessageText.setText(lastMessage.getText());
+                        }
                     }
                 });
             } else {
-                lastMessageText.setText("Write something to start a conversation!");
+                lastMessageText.setText(R.string.start_a_conversation);
             }
 
         }
