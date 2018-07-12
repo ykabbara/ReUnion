@@ -3,12 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/turquoise_blue"
+    tools:context=".activity.LoginActivity"
+    >
+
+<RelativeLayout
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:paddingRight="30dp"
     android:paddingLeft="31dp"
+<<<<<<< HEAD
     tools:context=".activity.LoginActivity"
     android:background="@color/turquoise_blue"
     android:paddingEnd="30dp"
     android:paddingStart="31dp">
+||||||| merged common ancestors
+    tools:context=".activity.LoginActivity"
+    android:background="@color/turquoise_blue">
+=======
+    >
+>>>>>>> 524c584b9333a4031fe8cb18862a6e8892ac363a
 
 
 
@@ -54,3 +69,4 @@
     </LinearLayout>
 
 </RelativeLayout>
+</ScrollView>
